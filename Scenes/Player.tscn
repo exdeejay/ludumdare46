@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Inventory.gd" type="Script" id=2]
+[ext_resource path="res://Sounds/darkness.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=4]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.5
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 1, 0 )
+shape = SubResource( 1 )
+
+[node name="RemoteTransform" type="RemoteTransform" parent="."]
+remote_path = NodePath("../Camera/OverlayViewport/OverlayCamera")
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+cull_mask = 1048573
+current = true
+script = ExtResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Camera"]
+stream = ExtResource( 3 )
+
+[node name="OverlayViewport" type="Viewport" parent="Camera"]
+size = Vector2( 1280, 720 )
+transparent_bg = true
+render_target_update_mode = 3
+
+[node name="OverlayCamera" type="Camera" parent="Camera/OverlayViewport"]
+cull_mask = 1048574
+current = true
+
+[node name="RayCast" type="RayCast" parent="Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -1 )
+collide_with_areas = true
+
+[node name="Hand" type="Spatial" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.399015, -0.247945, -0.426993 )
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource( 2 )

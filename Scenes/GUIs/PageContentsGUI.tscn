@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/GUIs/PageContentsGUI.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/PageBackground.png" type="Texture" id=2]
+[ext_resource path="res://Fonts/LongCang-Regular.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 3 )
+
+[node name="PageContentsGUI" type="Control"]
+margin_right = 432.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 432, 720 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 432.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 432, 720 )
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_top = 40.0
+margin_right = -40.0
+margin_bottom = -40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PageText" type="Label" parent="MarginContainer"]
+margin_right = 332.0
+margin_bottom = 640.0
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
